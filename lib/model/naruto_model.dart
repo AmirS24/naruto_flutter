@@ -4,10 +4,10 @@ part 'naruto_model.g.dart';
 
 @JsonSerializable()
 class NarutoModel {
-  final String name;
-  final String images;
+  final String nickname;
+  final String image;
 
-  NarutoModel(String json, {required this.name,required this.images});
+  NarutoModel({required this.nickname, required this.image});
 
   factory NarutoModel.fromJson(Map<String, dynamic> json) =>
       _$NarutoModelFromJson(json);
