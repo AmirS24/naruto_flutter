@@ -7,7 +7,7 @@ class NarutoModel {
   final String nickname;
   final String image;
 
-  NarutoModel({required this.nickname, required this.image});
+  NarutoModel(String json, {required this.nickname, required this.image});
 
   factory NarutoModel.fromJson(Map<String, dynamic> json) =>
       _$NarutoModelFromJson(json);
