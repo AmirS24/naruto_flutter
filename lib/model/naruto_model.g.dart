@@ -7,9 +7,24 @@ part of 'naruto_model.dart';
 // **************************************************************************
 
 NarutoModel _$NarutoModelFromJson(Map<String, dynamic> json) => NarutoModel(
-  name: json['nickname'] as String,
-  image: json['image'] as String,
+  name: json['name'] as String?,
+  images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  jutsu: (json['jutsu'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  family: json['family'] as Map<String, dynamic>?,
+  personal: json['personal'] as Map<String, dynamic>?,
+  height: json['height'] as Map<String, dynamic>?,
+  rank: json['rank'] as Map<String, dynamic>?,
+  id: json['id'],
 );
 
 Map<String, dynamic> _$NarutoModelToJson(NarutoModel instance) =>
-    <String, dynamic>{'nickname': instance.nickname, 'image': instance.image};
+    <String, dynamic>{
+      'name': instance.name,
+      'images': instance.images,
+      'jutsu': instance.jutsu,
+      'id': instance.id,
+      'family': instance.family,
+      'personal': instance.personal,
+      'height': instance.height,
+      'rank': instance.rank,
+    };
