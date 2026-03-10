@@ -84,10 +84,10 @@ class NarutoDetailScreen extends StatelessWidget {
 
                   _buildTabContent([
                     _buildInfoCard("Personal Info", {
-                      "Clan": character.clan,
-                      "Height": character.blankPeriodHeight,
-                      "Status": character.personal?["status"],
-                      "Birthdate": character.personal?["birthdate"],
+                      if (character.clan != "Unknown") "Clan": character.clan,
+                      if (character.anyHeight != "Unknown") "Height": character.anyHeight,
+                      if (character.personal?["status"] != null) "Status": character.personal?["status"],
+                      if (character.personal?["birthdate"] != null) "Birthdate": character.personal?["birthdate"],
                     }),
                     _buildInfoCard("Other Info", character.personal),
                   ]),
@@ -96,10 +96,12 @@ class NarutoDetailScreen extends StatelessWidget {
                   _buildTabContent([
                     _buildJutsuCard("Key Jutsu",character.jutsu),
                   ]),
-                  const Center(child: Text("Family list", style: TextStyle(color: Colors.white))),
-
-
-                  const Center(child: Text("Rank info", style: TextStyle(color: Colors.white))),
+                  _buildTabContent([
+                    _buildInfoCard("Relatives", character.family)
+                  ]),
+                  _buildTabContent([
+                    _buildInfoCard("Rank", character.rank)
+                  ]),
                 ],
               ),
             ),
@@ -116,8 +118,11 @@ class NarutoDetailScreen extends StatelessWidget {
     );
   }
 
+
+
   Widget _buildInfoCard(String title, Map<String, dynamic>? data) {
     if (data == null || data.isEmpty) return const SizedBox();
+
 
     return Container(
       width: double.infinity,

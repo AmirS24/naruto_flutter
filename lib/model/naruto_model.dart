@@ -32,10 +32,15 @@ class NarutoModel {
       }
 
   String get clan{
-    if(family != null && family!.containsKey('clan')){
+    if(personal != null && personal!.containsKey('clan')){
       return personal!["clan"].toString();
     }
     return "No clan";
+  }
+
+  String get anyHeight{
+    if(height == null || height!.isEmpty) return "Unknown";
+    return height!.values.first.toString();
   }
 
       factory NarutoModel.fromJson(Map<String, dynamic> json) =>
