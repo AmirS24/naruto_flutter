@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:naruto_flutter/model/naruto_model.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class NarutoDetailScreen extends StatelessWidget {
   final NarutoModel character;
 
@@ -29,10 +32,19 @@ class NarutoDetailScreen extends StatelessWidget {
                       color: Colors.orange,
                       shape: BoxShape.circle,
                     ),
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(character.image),
-                    ),
+                   child: ClipOval(
+                     child: CachedNetworkImage(
+                       imageUrl: character.image,
+                       width: 100,
+                       height: 100,
+                       fit: BoxFit.cover,
+                       placeholder: (context, url) => const CircularProgressIndicator(
+                         color: Colors.white,
+                         strokeWidth: 2,
+                       ),
+                       errorWidget: (context, url, error) => const Icon(Icons.error),
+                     ),
+                   ),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
